@@ -1,0 +1,27 @@
+CREATE TABLE Auto
+(
+rendszam CHAR(7) PRIMARY KEY,
+marka VARCHAR(50) NOT NULL,
+tipus VARCHAR(50) NOT NULL,
+napi_dij INT CHECK(napi_dij > 0)
+
+)
+
+
+CREATE TABLE Kolcsonozes
+(
+kolcsonzes_id CHAR(7) PRIMARY KEY,
+auto_rendszam VARCHAR(50) NOT NULL,
+ugyfel_id VARCHAR(50) REFERENCE Ugyfel(ugyfel_id),
+napok_szama INT CHECK(napok_szama > 0)
+
+)
+
+CREATE TABLE Ugyfel
+(
+ugyfel_id INT PRIMARY KEY,
+nev VARCHAR(50) NOT NULL,
+telefon VARCHAR(50),
+email VARCHAR(100) NOT NULL
+
+)
