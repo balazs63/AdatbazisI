@@ -1,0 +1,36 @@
+CREATE TABLE tanfolyam
+(
+tkod INT, ar INT,
+tipus CHAR(30),
+megnevezes VARCHAR2(100),
+PRIMARY KEY (tkod)
+);
+
+CREATE TABLE resztvevo (
+tajszam CHAR(13),
+nev CHAR(30),
+lakcim VARCHAR2(100),
+PRIMARY KEY (tajszam)
+);
+
+CREATE TABLE befizetes
+(
+diak INT,
+kurzus INT,
+befizetes INT,
+FOREIGN KEY (diak) REFERENCES resztvevo(tajszam),
+FOREIGN KEY (kurzus) REFERENCES tanfolyam(tkod)
+); 
+
+
+
+1.feladat
+
+INSERT INTO resztvevo (tajszam, ar, lakcim) VALUES (123456789,'Nagy Péter','Miskolc Fő utca 1.'); 
+
+2.feladat
+DELETE FROM tanfolyam  WHERE ar < 10000;
+
+3.feladat
+
+UPDATE tanfolyam SET ar = ar * 0.8 WHERE tipus = 'Nyelv'; 
