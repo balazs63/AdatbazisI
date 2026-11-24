@@ -1,0 +1,35 @@
+1.select nev,tipus from alloviz where tipus = 'morotvató'
+2.SELECT NEV FROM ALLOVIZ WHERE TERULET > 100
+3.select avg(terulet) as atlagos_terulet,nev from alloviz where tipus = 'bányató'
+4.select nev from telepulesgps where  id = 382
+5.select nev from telepulesgps where nev like('S%')
+6.select distinct tipus from alloviz
+7.SELECT t.nev
+FROM telepulesgps t
+JOIN helykapcs h ON t.id = h.gpsid
+JOIN alloviz a ON h.allovizid = a.id
+WHERE a.nev = 'Balaton';
+8.SELECT a.nev AS "Állóvíznév", COUNT(h.gpsid) AS "db"
+FROM alloviz a
+LEFT JOIN helykapcs h ON a.id = h.allovizid
+GROUP BY a.id, a.nev;
+9.SELECT a.nev, COUNT(h.gpsid) AS telepules_db
+FROM alloviz a
+JOIN helykapcs h ON a.id = h.allovizid
+GROUP BY a.id, a.nev
+ORDER BY telepules_db DESC
+FETCH FIRST 1 ROWS WITH TIES;
+10.SELECT nev, tipus, terulet
+FROM alloviz
+WHERE terulet BETWEEN 3 AND 10
+  AND vizgyujto >= 10 * terulet;
+11.SELECT a.nev AS to_neve, t.nev AS telepules_neve
+FROM alloviz a
+JOIN helykapcs h ON a.id = h.allovizid
+JOIN telepulesgps t ON h.gpsid = t.id
+ORDER BY a.nev ASC;
+12.SELECT a.nev, COUNT(h.gpsid) AS telepulesek_szama
+FROM alloviz a
+JOIN helykapcs h ON a.id = h.allovizid
+GROUP BY a.id, a.nev
+HAVING COUNT(h.gpsid) >= 3;
